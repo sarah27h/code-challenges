@@ -1,54 +1,39 @@
 /*
 Challenge
 ************
-Have the function FirstReverse(str) take the str parameter being passed 
-and return the string in reversed order. 
-For example: if the input string is "Hello World and Coders" 
-then your program should return the string sredoC dna dlroW olleH. 
+Have the function SimpleAdding(num) add up all the numbers from 1 to num.
+For example: if the input is 4 then your program should return 10 because 1 + 2 + 3 + 4 = 10.
+For the test cases, the parameter num will be any number from 1 to 1000.
 
 Sample Test Cases
 ***********************
-Input:"coderbyte"
+Input:12
 
-Output:"etybredoc"
+Output:78
 
 
-Input:"I Love Code"
+Input:140
 
-Output:"edoC evoL I"
+Output:9870
 */
 
 /*solution based on recursion */
-function reverse( str ) {
-    if(str<=1) {
-        return str
-    } else {
-        return reverse(str.substring(1))+ str[0];
-    }
-    // using ternary operator
-    // return (str<=1)? str: reverse(str.substring(1))+ str[0];
-};
+function SimpleAdding(num) {
+	return num===1? 1 : num + SimpleAdding(num-1)
 
-
-reverse('I Love Code');
-
-
-/* another solutions */
-
-function reverse( str ) {
-    return (str<=1)? str: reverse(str.substring(1))+ str[0];
-};
-
-function FirstReverse(str) {
-    return str.split('').reverse().join('');
- }
-
-function reverse( str ) {
-    let reverseStr = '';
-    let strArray = str.split(' ').reverse();
-    for(let i = 0; i < strArray.length; i++ ) {
-        let reverseWord = strArray[i].split('').reverse().join('') + ' ';
-        reverseStr += reverseWord;
-    }
-    return reverseStr;
 }
+
+
+console.log(SimpleAdding(4)); // result should be 10
+
+/* solution with for loop */
+/*
+function SimpleAdding(num) { 
+	let sum = 0;
+	for(let i=1; i<=num; i++) {
+		sum += i
+    }
+  return sum; 
+         
+}
+*/
