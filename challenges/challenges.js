@@ -1,39 +1,53 @@
 /*
 Challenge
 ************
-Have the function SimpleAdding(num) add up all the numbers from 1 to num.
-For example: if the input is 4 then your program should return 10 because 1 + 2 + 3 + 4 = 10.
-For the test cases, the parameter num will be any number from 1 to 1000.
+Have the function LetterCapitalize(str) 
+take the str parameter being passed and 
+capitalize the first letter of each word. 
+Words will be separated by only one space. 
+
 
 Sample Test Cases
 ***********************
-Input:12
+Input:"hello world"
 
-Output:78
+Output:"Hello World"
 
 
-Input:140
+Input:"i ran there"
 
-Output:9870
+Output:"I Ran There"
 */
 
 /*solution based on recursion */
-function SimpleAdding(num) {
-	return num===1? 1 : num + SimpleAdding(num-1)
-
+function LetterCapitalize (str) {
+	 // convert all letters to lowercase to cover case capital letters in middle of word
+	 // then split str into an array
+	let strArray = str.toLowerCase().split(' ');
+	for (let i = 0; i < strArray.length; i++) {
+ 		// change first letter of every item in array then add the remaining letters
+		strArray[i] = strArray[i][0].toUpperCase() + strArray[i].slice(1);	
+	}
+ 	// convert array to a string and return it
+	return (strArray.join(' '));
 }
 
 
-console.log(SimpleAdding(4)); // result should be 10
-
-/* solution with for loop */
 /*
-function SimpleAdding(num) { 
-	let sum = 0;
-	for(let i=1; i<=num; i++) {
-		sum += i
-    }
-  return sum; 
-         
-}
-*/
+// a solution using regular expressions
+// from https://www.coderbyte.com/solution/Letter%20Capitalize#JavaScript
+function LetterCapitalize(str) { 
+  
+	// our regex [a-z] matches every alphabetic character in the string
+	// but the \b before it specifies a word boundary, in other words, nothing can 
+	// come before those letters therefore selecting every word in the string
+	// using a function to return the replacement text
+	return str.replace(/\b[a-z]/gi, function(char) { 
+	  return char.toUpperCase();
+	});
+		   
+  }
+
+  */
+console.log(LetterCapitalize("heLLo world"));
+
