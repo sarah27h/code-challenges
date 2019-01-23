@@ -32,12 +32,11 @@ function SimpleSymbols(str) {
 			if(!(pattern.test(str[i])) ) {
 				// match return an array so we need to access first element to check matches
 				return str[i-1].match(pattern)[0] === str[i+1].match(pattern)[0] ? true : false;
-			}
-				
+			}	
 		}
 	}
 }
-	SimpleSymbols('+o+m');
+SimpleSymbols('+d+=3=+s+');
 
 
 /*
