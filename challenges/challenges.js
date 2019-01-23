@@ -24,19 +24,19 @@ Output:"false"
 function SimpleSymbols(str) { 
 	let pattern = /[+=]/;
 	// return false if str start or end with a character or an empty str
-	  if(!(pattern.test(str[0])) || !(pattern.test(str[str.length-1])) || str[0] === null) {
-		  return false;
-	  } else {
-			for(let i=1; i<= str.length; i++) {
-				// return true if character is between +character+
-				if(!(pattern.test(str[i])) ) {
-					// match return an array so we need to access first element to check matches
-					return str[i-1].match(pattern)[0] === str[i+1].match(pattern)[0] ? true : false;
-			   }
+	if(!(pattern.test(str[0])) || !(pattern.test(str[str.length-1])) || str[0] === null) {
+		return false;
+	} else {
+		for(let i=1; i<= str.length; i++) {
+			// return true if character is between +character+
+			if(!(pattern.test(str[i])) ) {
+				// match return an array so we need to access first element to check matches
+				return str[i-1].match(pattern)[0] === str[i+1].match(pattern)[0] ? true : false;
+			}
 				
-			  }
-	  }
+		}
 	}
+}
 	SimpleSymbols('+o+m');
 
 
