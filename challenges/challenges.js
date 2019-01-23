@@ -1,53 +1,73 @@
 /*
 Challenge
 ************
-Have the function LetterCapitalize(str) 
-take the str parameter being passed and 
-capitalize the first letter of each word. 
-Words will be separated by only one space. 
+Have the function SimpleSymbols(str) take the str parameter being passed and determine 
+if it is an acceptable sequence by either returning the string true or false. 
+The str parameter will be composed of + and = symbols with several letters between them (ie. ++d+===+c++==a) 
+and for the string to be true each letter must be surrounded by a + symbol.
+So the string to the left would be false. 
+The string will not be empty and will have at least one letter. 
 
 
 Sample Test Cases
 ***********************
-Input:"hello world"
+Input:"+d+=3=+s+"
 
-Output:"Hello World"
+Output:"true"
 
 
-Input:"i ran there"
+Input:"f++d+"
 
-Output:"I Ran There"
+Output:"false"
 */
 
-/*solution based on recursion */
-function LetterCapitalize (str) {
-	 // convert all letters to lowercase to cover case capital letters in middle of word
-	 // then split str into an array
-	let strArray = str.toLowerCase().split(' ');
-	for (let i = 0; i < strArray.length; i++) {
- 		// change first letter of every item in array then add the remaining letters
-		strArray[i] = strArray[i][0].toUpperCase() + strArray[i].slice(1);	
+function SimpleSymbols(str) { 
+	let pattern = /[+=]/;
+	// return false if str start or end with a character or an empty str
+	  if(!(pattern.test(str[0])) || !(pattern.test(str[str.length-1])) || str[0] === null) {
+		  return false;
+	  } else {
+			for(let i=1; i<= str.length; i++) {
+				// return true if character is between +character+
+				if(!(pattern.test(str[i])) ) {
+					// match return an array so we need to access first element to check matches
+					return str[i-1].match(pattern)[0] === str[i+1].match(pattern)[0] ? true : false;
+			   }
+				
+			  }
+	  }
 	}
- 	// convert array to a string and return it
-	return (strArray.join(' '));
-}
+	SimpleSymbols('+o+m');
 
 
 /*
-// a solution using regular expressions
-// from https://www.coderbyte.com/solution/Letter%20Capitalize#JavaScript
-function LetterCapitalize(str) { 
-  
-	// our regex [a-z] matches every alphabetic character in the string
-	// but the \b before it specifies a word boundary, in other words, nothing can 
-	// come before those letters therefore selecting every word in the string
-	// using a function to return the replacement text
-	return str.replace(/\b[a-z]/gi, function(char) { 
-	  return char.toUpperCase();
-	});
-		   
+// from https://www.coderbyte.com/solution/Simple%20Symbols#JavaScript
+function SimpleSymbols(str) { 
+
+  // pad the strings so that if a character exists at the beginning
+  // of the string for example, we don't get on out-of-bounds error by
+  // trying to get the character before it
+  var str = '=' + str + '=';
+
+  // loop through entire string
+  for (var i = 0; i < str.length; i++) {
+    
+    // check to see if current character is an alphabetic character  
+    // by using a simple case-insensitive regex pattern 
+    if (str[i].match(/[a-z]/i) !== null) {
+
+      // check to see if a + symbol is to the left and right
+      // if not, then we know this string is not valid
+      if (str[i-1] !== '+' || str[i+1] !== '+') { 
+        return false;
+      }
+
+    }
+ 
   }
 
-  */
-console.log(LetterCapitalize("heLLo world"));
+  return true;
+  
+}
 
+*/
